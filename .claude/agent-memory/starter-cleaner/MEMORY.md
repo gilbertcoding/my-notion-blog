@@ -1,0 +1,1 @@
+- [인형공예 블로그 프로젝트 설정](project-notion-blog.md) — Phase 1 완료, Notion API 연동 준비 완료, 알려진 환경 이슈 포함
