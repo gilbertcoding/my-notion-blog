@@ -81,3 +81,8 @@ npx shadcn@latest add [component-name]
 - 한국어 라벨(라이트, 다크, 시스템)이 포함된 테마 토글
 - 한국어 설명이 포함된 환경변수
 - 한국어로 작성된 README 및 문서
+
+## Project Context
+
+- **PRD 문서**: @docs/PRD.md - 프로젝트의 요구사항, 기능, 기술 스택 정의
+- **개발 로드맵**: @docs/ROADMAP.md - 올바른 개발 순서와 각 Phase별 작업 계획
