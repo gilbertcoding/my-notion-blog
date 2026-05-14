@@ -278,6 +278,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 export async function getPostsByCategory(
   category: string
 ): Promise<PostSummary[]> {
+  console.log("🔍 getPostsByCategory called with category:", category)
+
   const pages = await queryDatabase({
     and: [
       {
@@ -293,6 +295,15 @@ export async function getPostsByCategory(
         },
       },
     ],
+  })
+
+  console.log("📊 Found posts for category:", pages.length)
+  pages.forEach((p, i) => {
+    const postCategory =
+      p.properties.Category?.type === "select"
+        ? p.properties.Category.select?.name
+        : undefined
+    console.log(`  [${i}] Category: "${postCategory}" (Match: ${postCategory === category})`)
   })
 
   return pages.map(mapPageToPostSummary)
