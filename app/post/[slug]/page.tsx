@@ -7,7 +7,7 @@ import { CategoryBadge } from "@/components/common/category-badge"
 import { PostMeta } from "@/components/post/post-meta"
 import { formatDate } from "@/lib/utils"
 
-export const revalidate = 3600
+export const revalidate = 0
 
 interface PostPageProps {
   params: Promise<{
