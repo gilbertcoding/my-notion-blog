@@ -22,6 +22,8 @@ export async function generateMetadata({
 }: CategoryPageProps): Promise<Metadata> {
   const { category } = await params
   const decodedCategory = decodeURIComponent(category)
+  console.log("🔤 generateMetadata - 원본 category:", category)
+  console.log("🔤 generateMetadata - 디코딩된 category:", decodedCategory)
 
   return {
     title: `${decodedCategory} 카테고리 - 인형공예 작품전시`,
@@ -36,6 +38,8 @@ export async function generateMetadata({
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params
   const decodedCategory = decodeURIComponent(category)
+  console.log("📁 CategoryPage - 원본 category:", category)
+  console.log("📁 CategoryPage - 디코딩된 category:", decodedCategory)
   const posts = await getPostsByCategory(decodedCategory)
 
   return (
