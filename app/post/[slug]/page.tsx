@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
+import ReactMarkdown from "react-markdown"
 import { getPublishedPosts, getPostBySlug } from "@/lib/notion"
 import { CategoryBadge } from "@/components/common/category-badge"
 import { PostMeta } from "@/components/post/post-meta"
@@ -84,6 +85,7 @@ export default async function PostPage({ params }: PostPageProps) {
             fill
             className="object-cover"
             priority
+            sizes="100vw"
           />
         </div>
       )}
@@ -102,10 +104,8 @@ export default async function PostPage({ params }: PostPageProps) {
 
             {/* 본문 내용 */}
             {post.content && (
-              <div className="prose dark:prose-invert max-w-none">
-                <div className="whitespace-pre-wrap text-foreground/80 leading-relaxed">
-                  {post.content}
-                </div>
+              <div className="prose max-w-none">
+                <ReactMarkdown>{post.content}</ReactMarkdown>
               </div>
             )}
           </div>

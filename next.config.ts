@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    formats: ["image/avif", "image/webp"],
     // Notion 이미지 및 외부 이미지 호스팅 허용
     remotePatterns: [
       {
