@@ -243,6 +243,8 @@ export async function getPublishedPosts(): Promise<PostSummary[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
+  console.log("🔍 getPostBySlug called with slug:", slug)
+
   const pages = await queryDatabase({
     property: "Status",
     select: {
@@ -250,14 +252,19 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     },
   })
 
-  const page = pages.find(
-    (p) =>
-      createSlug(
-        p.properties.Title?.type === "title"
-          ? p.properties.Title.title[0]?.plain_text ?? ""
-          : ""
-      ) === slug
-  )
+  console.log("📊 Found posts:", pages.length)
+
+  const page = pages.find((p) => {
+    const title =
+      p.properties.Title?.type === "title"
+        ? p.properties.Title.title[0]?.plain_text ?? ""
+        : ""
+    const generatedSlug = createSlug(title)
+    console.log(`  - Title: "${title}" → Slug: "${generatedSlug}" (Match: ${generatedSlug === slug})`)
+    return generatedSlug === slug
+  })
+
+  console.log("✅ Page found:", !!page)
 
   if (!page) {
     return null
