@@ -29,7 +29,7 @@ interface PostCardProps {
 export function PostCard({ post }: PostCardProps) {
   return (
     <Link href={`/post/${post.slug}`} className="group block">
-      <Card className="overflow-hidden transition-all hover:shadow-md hover:border-border">
+      <Card className="overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-primary/30">
         {/* 썸네일 이미지 */}
         <div className="relative aspect-square overflow-hidden bg-muted">
           {post.imageUrl ? (

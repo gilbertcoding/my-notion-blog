@@ -22,7 +22,7 @@ interface PostMetaProps {
  */
 export function PostMeta({ post }: PostMetaProps) {
   return (
-    <div className="space-y-4 rounded-lg border border-border p-4">
+    <div className="space-y-4 rounded-lg border border-border/40 p-4">
       {/* 카테고리 및 날짜 */}
       <div className="flex flex-wrap items-center gap-2">
         <CategoryBadge category={post.category} />
