@@ -1,15 +1,15 @@
 ---
 name: project-notion-blog
-description: 인형공예 작품전시 블로그 프로젝트 현황 - Notion CMS 기반 Next.js 15 블로그, Phase 3 완료 (2026-05-14)
+description: 인형공예 작품전시 블로그 프로젝트 현황 - Notion CMS 기반 Next.js 15 블로그, Phase 4 완료 (2026-05-14)
 metadata:
   type: project
 ---
 
-인형공예 작품전시 블로그 프로젝트가 Phase 3 완전 완료 상태 (2026-05-14 기준).
+인형공예 작품전시 블로그 프로젝트가 Phase 4 완전 완료 상태 (2026-05-14 기준).
 
 **Why:** Notion을 CMS로 사용하여 비개발자도 콘텐츠를 쉽게 관리할 수 있는 블로그를 구축 중. MVP 완료 목표일은 2026-05-20, 최종 마감은 2026-06-02.
 
-**How to apply:** Phase 1~3 완료 (전체 진행도 57%). 다음 작업은 Phase 4(스타일링 및 최적화) 진입. 빌드 성공(41초), 13개 페이지 SSG 사전 생성 완료.
+**How to apply:** Phase 1~4 완료 (전체 진행도 80%). 다음 작업은 Phase 5(테스트 및 배포). 빌드 성공(44초), 15개 페이지 SSG 사전 생성 완료 (sitemap.xml, robots.txt 포함).
 
 ## Phase 1 완료 (100%)
 - @notionhq/client v5.21.0 설치 완료
@@ -48,11 +48,20 @@ metadata:
   - ISR revalidate = 3600 설정
 - 빌드 결과: 성공 (41초), 13개 페이지 SSG 사전 생성, TypeScript 100% 준수
 
+## Phase 4 완료 (100%, 2026-05-14)
+- 4.1 SEO: metadataBase, sitemap.ts, robots.ts, not-found.tsx, 홈 메타데이터 구현 완료
+- 4.2 동적 네비게이션: getCategories() 기반 NavLinks 클라이언트 컴포넌트, MobileNav Sheet 구현 완료
+- 4.3 Tailwind 스타일: hover:border-primary/30 카드 효과, border opacity 통일 완료
+- 4.4 다크 모드: 토큰 기반 전환 검증, 모든 컴포넌트 정상 확인 완료
+- 4.5 반응형: 375px/768px/1200px+ 3단계 검증 완료
+- 4.6 성능 최적화: react-markdown 추가, Image sizes 속성, AVIF/WebP 지원 완료
+- 빌드 결과: 성공 (44초), 15개 페이지 SSG 사전 생성, 번들 169kB
+
 ## Phase 구조 (PRD 기반 5단계)
 1. 환경 설정 및 초기화 (1-2일) — 완료 100%
 2. Notion 데이터베이스 생성 (1일) — 완료 100% (2026-05-14)
 3. 핵심 기능 구현 (3-4일) — 완료 100% (2026-05-14)
-4. 스타일링 및 최적화 (1-2일) — 다음 단계 (2026-05-14 시작 예정)
-5. 테스트 및 배포 (1일) — 대기
+4. 스타일링 및 최적화 (1-2일) — 완료 100% (2026-05-14)
+5. 테스트 및 배포 (1일) — 다음 단계 (2026-05-14 시작 예정)
 
 관련: [[roadmap-patterns-nextjs-notion]]
