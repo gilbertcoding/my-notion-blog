@@ -1,18 +1,20 @@
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
 import { ThemeToggle } from "./theme-toggle"
 
+// 블로그 상단 네비게이션 바
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-14 max-w-screen-2xl items-center px-4">
-        <div className="mr-4 hidden md:flex">
+        {/* 로고 및 데스크탑 네비게이션 */}
+        <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
+            <span className="text-lg">🪡</span>
             <span className="hidden font-bold sm:inline-block">
-              Next.js Starter Kit
+              인형공예 작품전시
             </span>
           </Link>
-          <nav className="flex items-center gap-4 text-sm lg:gap-6">
+          <nav className="hidden md:flex items-center gap-4 text-sm lg:gap-6">
             <Link
               href="/"
               className="transition-colors hover:text-foreground/80 text-foreground"
@@ -20,25 +22,28 @@ export function Navbar() {
               홈
             </Link>
             <Link
-              href="/about"
+              href="/category/소품"
               className="transition-colors hover:text-foreground/80 text-muted-foreground"
             >
-              소개
+              소품
             </Link>
             <Link
-              href="/docs"
+              href="/category/의류"
               className="transition-colors hover:text-foreground/80 text-muted-foreground"
             >
-              문서
+              의류
+            </Link>
+            <Link
+              href="/category/액세서리"
+              className="transition-colors hover:text-foreground/80 text-muted-foreground"
+            >
+              액세서리
             </Link>
           </nav>
         </div>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            <Badge variant="secondary" className="mr-2">
-              v1.0.0
-            </Badge>
-          </div>
+
+        {/* 테마 토글 */}
+        <div className="flex flex-1 items-center justify-end">
           <nav className="flex items-center">
             <ThemeToggle />
           </nav>

@@ -1,32 +1,25 @@
-import Link from "next/link"
-
+// 블로그 하단 푸터
 export function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className="border-t border-border/40">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0 px-4">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            <Link
-              href="/"
-              className="font-medium underline underline-offset-4"
-            >
-              Next.js Starter Kit
-            </Link>
-            로 구축되었습니다. 소스 코드는{" "}
-            <Link
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
-            </Link>
-            에서 확인할 수 있습니다.
+      <div className="container mx-auto flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0 px-4 max-w-screen-2xl">
+        {/* 사이트 소개 */}
+        <div className="flex flex-col items-center gap-1 md:items-start">
+          <p className="text-sm font-medium flex items-center gap-1">
+            <span>🪡</span>
+            <span>인형공예 작품전시</span>
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Notion을 CMS로 활용한 작품전시 블로그
           </p>
         </div>
-        <div className="flex items-center space-x-1">
+
+        {/* 저작권 */}
+        <div className="flex items-center">
           <p className="text-sm text-muted-foreground">
-            © 2025 All rights reserved.
+            © {currentYear} 인형공예 작품전시. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "shrimp-task-manager": {
+      "command": "node",
+      "args": [
+        "/var/local/workspace/claude/mcp-shrimp-task-manager/dist/index.js"
+      ],
+      "env": {
+        "DATA_DIR": "/var/local/workspace/claude/my-notion-blog-prd/shrimp_data",
+        "TEMPLATES_USE": "en",
+        "ENABLE_GUI": "true"
+      }
+    }
+  }
+}

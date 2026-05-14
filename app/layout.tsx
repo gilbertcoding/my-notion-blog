@@ -16,8 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Starter Kit",
-  description: "Next.js v15, TypeScript, TailwindCSS v4, shadcn/ui로 구성된 스타터 킷입니다.",
+  title: {
+    default: "인형공예 작품전시 블로그",
+    template: "%s | 인형공예 작품전시",
+  },
+  description: "Notion을 CMS로 활용하여 인형공예 작품을 전시하고 관리하는 블로그 플랫폼입니다.",
 };
 
 export default function RootLayout({
