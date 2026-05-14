@@ -37,7 +37,12 @@ async function queryDatabase(
 ): Promise<NotionPage[]> {
   const { notionDatabaseId } = getServerEnvVars()
 
+  console.log("📡 queryDatabase 호출됨")
+  console.log("  Database ID:", notionDatabaseId ? `${notionDatabaseId.substring(0, 8)}...` : "UNDEFINED")
+  console.log("  Filter:", filter ? JSON.stringify(filter) : "없음")
+
   try {
+    console.log("  🔄 Notion API 요청 중...")
     const response = await fetch(
       `${NOTION_API_BASE}/databases/${notionDatabaseId}/query`,
       {
@@ -50,20 +55,25 @@ async function queryDatabase(
       }
     )
 
+    console.log("  응답 상태:", response.ok, `(status: ${response.status})`)
+
     if (!response.ok) {
       const error = await response.json()
-      if (process.env.NODE_ENV === "development") {
-        console.error("Notion API 오류:", error)
-      }
+      console.error("  ❌ Notion API 에러:", {
+        status: response.status,
+        body: error,
+      })
       return []
     }
 
     const data = await response.json()
+    console.log("  ✅ 데이터 조회 성공:", `${data.results?.length || 0}개 페이지`)
     return data.results || []
   } catch (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.error("Notion 쿼리 오류:", error)
-    }
+    console.error("  💥 Notion 쿼리 에러 (네트워크/파싱):", {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    })
     return []
   }
 }
