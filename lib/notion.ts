@@ -253,7 +253,9 @@ export async function getPublishedPosts(): Promise<PostSummary[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  console.log("🔍 getPostBySlug called with slug:", slug)
+  const decodedSlug = decodeURIComponent(slug)
+  console.log("🔍 getPostBySlug called with slug:", decodedSlug)
+  console.log("  (원본 URL slug:", slug + ")")
 
   const pages = await queryDatabase({
     property: "Status",
@@ -270,8 +272,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
         ? p.properties.Title.title[0]?.plain_text ?? ""
         : ""
     const generatedSlug = createSlug(title)
-    console.log(`  - Title: "${title}" → Slug: "${generatedSlug}" (Match: ${generatedSlug === slug})`)
-    return generatedSlug === slug
+    console.log(`  - Title: "${title}" → Slug: "${generatedSlug}" (Match: ${generatedSlug === decodedSlug})`)
+    return generatedSlug === decodedSlug
   })
 
   console.log("✅ Page found:", !!page)
