@@ -1,15 +1,15 @@
 ---
 name: project-notion-blog
-description: 인형공예 작품전시 블로그 프로젝트 현황 - Notion CMS 기반 Next.js 15 블로그, Phase 3-2 완료 (2026-05-14)
+description: 인형공예 작품전시 블로그 프로젝트 현황 - Notion CMS 기반 Next.js 15 블로그, Phase 3-5 완료 (2026-05-14)
 metadata:
   type: project
 ---
 
-인형공예 작품전시 블로그 프로젝트가 Phase 3-2 완료 상태 (2026-05-14 기준).
+인형공예 작품전시 블로그 프로젝트가 Phase 3-5 완료 상태 (2026-05-14 기준).
 
-**Why:** Notion을 CMS로 사용하여 비개발자도 콘텐츠를 쉽게 관리할 수 있는 블로그를 구축 중. MVP 완료 목표일은 2026-05-20으로 앞당겨졌으며, 최종 마감은 2026-06-02.
+**Why:** Notion을 CMS로 사용하여 비개발자도 콘텐츠를 쉽게 관리할 수 있는 블로그를 구축 중. MVP 완료 목표일은 2026-05-20, 최종 마감은 2026-06-02.
 
-**How to apply:** Phase 1~2 완료, Phase 3의 3.1~3.3 및 3.4 일부(getPublishedPosts 호출 + PostGrid 연결)가 완료된 상태. 다음 작업은 3.4 페이지네이션, 3.5 포스트 상세 페이지, 3.6 카테고리 페이지 구현.
+**How to apply:** Phase 1~2 완료, Phase 3의 3.1~3.5 완료(진행도 60%). 다음 작업은 3.4 페이지네이션/ISR, 3.6 카테고리 페이지 구현. 이후 Phase 4(스타일링 및 최적화) 진입.
 
 ## Phase 1 완료 (100%)
 - @notionhq/client v5.21.0 설치 완료
@@ -27,7 +27,7 @@ metadata:
 - 2.4 API 권한 설정: 완료
 - 2.5 정렬/필터 확인: 완료
 
-## Phase 3 현황 (40%, 진행 중)
+## Phase 3 현황 (60%, 진행 중)
 - 3.1 데이터 페칭 레이어 (lib/notion.ts): 완료
   - getPublishedPosts(), getPostBySlug(), getPostsByCategory(), getCategories() 4개 함수 모두 구현
   - REST API 방식으로 Notion 데이터 페칭, TypeScript 타입 체크 에러 0개
@@ -38,14 +38,19 @@ metadata:
   - getPublishedPosts() 호출 및 PostGrid 연결 완료
   - 브라우저에서 Notion 작품 카드 4개 정상 표시 확인
   - 페이지네이션 및 ISR 설정은 미완료
-- 3.5 포스트 상세 페이지: 미완료
+- 3.5 포스트 상세 페이지 (app/post/[slug]/page.tsx): 완료 (2026-05-14)
+  - generateStaticParams() — SSG 사전 생성
+  - generateMetadata() — 동적 SEO 메타데이터
+  - notFound() 404 처리
+  - 제목/카테고리/이미지/PostMeta/본문 렌더링
+  - ISR revalidate = 3600 설정
 - 3.6 카테고리 페이지: 미완료
 
 ## Phase 구조 (PRD 기반 5단계)
 1. 환경 설정 및 초기화 (1-2일) — 완료 100%
 2. Notion 데이터베이스 생성 (1일) — 완료 100% (2026-05-14)
-3. 핵심 기능 구현 (3-4일) — 진행 중 40%
-4. 스타일링 및 최적화 (1-2일) — 대기
+3. 핵심 기능 구현 (3-4일) — 진행 중 60%
+4. 스타일링 및 최적화 (1-2일) — 다음 단계 (2026-05-15 시작 예정)
 5. 테스트 및 배포 (1일) — 대기
 
 관련: [[roadmap-patterns-nextjs-notion]]

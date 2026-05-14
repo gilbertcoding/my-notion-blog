@@ -1,2 +1,2 @@
-- [인형공예 블로그 프로젝트 현황](project-notion-blog.md) — Phase 1 진행 중(60%), MVP 목표일 2026-05-22, Notion CMS 기반 Next.js 15
+- [인형공예 블로그 프로젝트 현황](project-notion-blog.md) — Phase 3 진행 중(60%), Phase 3-5 상세페이지 완료, MVP 목표일 2026-05-20
 - [Next.js + Notion API 로드맵 패턴](roadmap-patterns-nextjs-notion.md) — Phase 순서, 시간 추정, 주요 리스크 패턴
