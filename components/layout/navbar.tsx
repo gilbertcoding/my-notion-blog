@@ -3,6 +3,7 @@ import { getCategories } from "@/lib/notion"
 import { ThemeToggle } from "./theme-toggle"
 import { NavLinks } from "./nav-links"
 import { MobileNav } from "./mobile-nav"
+import { SearchBar } from "@/components/search/search-bar"
 
 // 블로그 상단 네비게이션 바
 export async function Navbar() {
@@ -22,8 +23,9 @@ export async function Navbar() {
           <NavLinks categories={categories} />
         </div>
 
-        {/* 테마 토글 + 모바일 메뉴 */}
+        {/* 검색 + 테마 토글 + 모바일 메뉴 */}
         <div className="flex items-center gap-2">
+          <SearchBar />
           <ThemeToggle />
           <MobileNav categories={categories} />
         </div>
