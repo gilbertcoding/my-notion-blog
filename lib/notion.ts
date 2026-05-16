@@ -37,12 +37,7 @@ async function queryDatabase(
 ): Promise<NotionPage[]> {
   const { notionDatabaseId } = getServerEnvVars()
 
-  console.log("📡 queryDatabase 호출됨")
-  console.log("  Database ID:", notionDatabaseId ? `${notionDatabaseId.substring(0, 8)}...` : "UNDEFINED")
-  console.log("  Filter:", filter ? JSON.stringify(filter) : "없음")
-
   try {
-    console.log("  🔄 Notion API 요청 중...")
     const response = await fetch(
       `${NOTION_API_BASE}/databases/${notionDatabaseId}/query`,
       {
@@ -55,25 +50,20 @@ async function queryDatabase(
       }
     )
 
-    console.log("  응답 상태:", response.ok, `(status: ${response.status})`)
-
     if (!response.ok) {
       const error = await response.json()
-      console.error("  ❌ Notion API 에러:", {
-        status: response.status,
-        body: error,
-      })
+      if (process.env.NODE_ENV === "development") {
+        console.error("Notion API 오류:", error)
+      }
       return []
     }
 
     const data = await response.json()
-    console.log("  ✅ 데이터 조회 성공:", `${data.results?.length || 0}개 페이지`)
     return data.results || []
   } catch (error) {
-    console.error("  💥 Notion 쿼리 에러 (네트워크/파싱):", {
-      message: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack : undefined,
-    })
+    if (process.env.NODE_ENV === "development") {
+      console.error("Notion 쿼리 오류:", error)
+    }
     return []
   }
 }
@@ -254,8 +244,6 @@ export async function getPublishedPosts(): Promise<PostSummary[]> {
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   const decodedSlug = decodeURIComponent(slug)
-  console.log("🔍 getPostBySlug called with slug:", decodedSlug)
-  console.log("  (원본 URL slug:", slug + ")")
 
   const pages = await queryDatabase({
     property: "Status",
@@ -264,19 +252,14 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     },
   })
 
-  console.log("📊 Found posts:", pages.length)
-
   const page = pages.find((p) => {
     const title =
       p.properties.Title?.type === "title"
         ? p.properties.Title.title[0]?.plain_text ?? ""
         : ""
     const generatedSlug = createSlug(title)
-    console.log(`  - Title: "${title}" → Slug: "${generatedSlug}" (Match: ${generatedSlug === decodedSlug})`)
     return generatedSlug === decodedSlug
   })
-
-  console.log("✅ Page found:", !!page)
 
   if (!page) {
     return null
@@ -290,8 +273,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 export async function getPostsByCategory(
   category: string
 ): Promise<PostSummary[]> {
-  console.log("🔍 getPostsByCategory called with category:", category)
-
   const pages = await queryDatabase({
     and: [
       {
@@ -307,15 +288,6 @@ export async function getPostsByCategory(
         },
       },
     ],
-  })
-
-  console.log("📊 Found posts for category:", pages.length)
-  pages.forEach((p, i) => {
-    const postCategory =
-      p.properties.Category?.type === "select"
-        ? p.properties.Category.select?.name
-        : undefined
-    console.log(`  [${i}] Category: "${postCategory}" (Match: ${postCategory === category})`)
   })
 
   return pages.map(mapPageToPostSummary)

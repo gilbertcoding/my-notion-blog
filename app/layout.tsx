@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     template: "%s | 인형공예 작품전시",
   },
   description: "Notion을 CMS로 활용하여 인형공예 작품을 전시하고 관리하는 블로그 플랫폼입니다.",
-  metadataBase: new URL("https://my-notion-blog.vercel.app"),
+  metadataBase: new URL("https://my-notion-blog-bice.vercel.app"),
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://my-notion-blog.vercel.app",
+    url: "https://my-notion-blog-bice.vercel.app",
     title: "인형공예 작품전시 블로그",
     description: "정성스럽게 만든 인형공예 작품들을 소개합니다.",
   },

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { getPublishedPosts, getCategories } from "@/lib/notion"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://my-notion-blog.vercel.app"
+  const baseUrl = "https://my-notion-blog-bice.vercel.app"
 
   const posts = await getPublishedPosts()
   const categories = await getCategories()

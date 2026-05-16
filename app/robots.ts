@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://my-notion-blog.vercel.app/sitemap.xml",
+    sitemap: "https://my-notion-blog-bice.vercel.app/sitemap.xml",
   }
 }
